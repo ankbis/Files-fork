@@ -221,6 +221,7 @@
 					x:Name="RootGrid"
 					PreviewKeyDown="RootGrid_PreviewKeyDown"
 					SizeChanged="RootGrid_SizeChanged">
+						<Grid.Resources>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />
 						<RowDefinition
@@ -238,6 +239,36 @@
 							MinWidth="208" />
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition x:Name="PaneColumn" Width="Auto" />
+						</Grid.ColumnDefinitions>
+
+						<!--  Calculator  -->
+						<Border
+							Grid.Row="2"
+							Grid.Column="0"
+							Margin="8"
+							Background="{ThemeResource App.Theme.Calculator.BackgroundBrush}"
+							BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+							BorderThickness="1"
+							CornerRadius="8">
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="*" />
+								</Grid.RowDefinitions>
+								<TextBlock
+									Grid.Row="0"
+									Margin="8"
+									FontSize="24"
+									Text="{x:Bind CalculatorViewModel.CurrentValue, Mode=OneWay}" />
+								<uc:CalculatorControl
+									Grid.Row="1"
+									DigitCommand="{x:Bind CalculatorViewModel.DigitCommand}"
+									EqualsCommand="{x:Bind CalculatorViewModel.EqualsCommand}"
+									OperationCommand="{x:Bind CalculatorViewModel.OperationCommand}" />
+							</Grid>
+						</Border>
+
+						</Grid.Resources>
 					</Grid.ColumnDefinitions>
 
 					<!--  File Navigation Toolbar  -->
@@ -328,6 +359,7 @@
 			</VisualStateGroup>
 			<VisualStateGroup>
 				<VisualState x:Name="NormalSidebarState">
+</Page>
 					<VisualState.StateTriggers>
 						<AdaptiveTrigger MinWindowWidth="0" />
 					</VisualState.StateTriggers>
